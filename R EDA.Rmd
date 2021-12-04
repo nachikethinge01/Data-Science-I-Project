@@ -1,0 +1,48 @@
+---
+title: "R EDA"
+author: "Nachiket Hinge"
+date: "11/29/2021"
+output: html_document
+---
+
+```{r}
+stats_salary <- read.csv("Stats_salary.csv")
+head(stats_salary)
+```
+
+#Histogram on Age
+```{r}
+library(ggplot2)
+```
+
+```{r}
+hist_salary <- ggplot(data = stats_salary, aes(x=Age))
+hist_salary + geom_histogram(binwidth = 1, aes(fill=Pos), color = "black")
+```
+
+#Correlation plot for pts and Salary
+
+```{r}
+require(scales)
+pts_salary <- ggplot(data = stats_salary, aes(x = PTS, y = Salary, color = Age))
+pts_salary + geom_point() + scale_x_continuous(labels = comma) + scale_y_continuous(labels = comma)
+```
+
+#Correlation plot for Games Attended and Salary
+```{r}
+require(scales)
+ga_salary <- ggplot(data = stats_salary, aes(x = Games.Attended, y = Salary, color = Age))
+ga_salary + geom_point() + scale_y_continuous(labels = comma)
+```
+
+#Which Postion has the most Salary
+```{r}
+require(scales)
+steal <- ggplot(data=stats_salary, aes(x=Salary, y=Pos, color=Pos)) + geom_jitter()  + geom_boxplot(alpha = 0.8) + scale_x_continuous(labels = comma)
+steal
+```
+
+```{r}
+
+```
+
